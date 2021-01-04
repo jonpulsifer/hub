@@ -1,11 +1,11 @@
-name: pulsifer
+name: hub
 up:
   - railgun
   - node:
-      version: v12.18.3
+      version: v14.15.3
       yarn: 1.22.5
 open:
-  app: https://pulsifer.myshopify.io
+  app: https://hub.myshopify.io
 
 commands:
   __default__: server

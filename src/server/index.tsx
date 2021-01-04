@@ -3,6 +3,7 @@ import ReactDOMServer from 'react-dom/server';
 import { StaticRouter } from 'react-router-dom';
 
 import express from 'express';
+import morgan from 'morgan';
 import cors from "cors";
 import axios from 'axios';
 import path from 'path';
@@ -11,11 +12,13 @@ import fs from 'fs';
 import {App} from '../App';
 import {HTTP} from 'cloudevents';
 
+const HOSTNAME = process.env.HOSTNAME || '0.0.0.0';
 const PORT = process.env.PORT || 8080;
 
 const blinkyUrl = "http://blinkypi0:3000";
 const server = express();
 
+server.use(morgan('combined'));
 server.use(cors());
 server.use(express.json());
 
@@ -63,6 +66,6 @@ server.get('/', (req, res) => {
   });
 });
 
-server.listen(PORT, () => {
+server.listen(Number(PORT), HOSTNAME, () => {
   console.log(`Server is listening on port ${PORT}`);
 });

@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import {
   Button,
   ButtonGroup,
@@ -8,7 +8,7 @@ import {
   Page,
 } from '@shopify/polaris';
 
-import {NestCam, Link} from './';
+import {Link, NestCam, UnifiCam} from './';
 import {HTTP, CloudEvent} from 'cloudevents';
 import axios from 'axios';
 
@@ -18,6 +18,14 @@ interface Props {
 
 export function Home({data}: Props) {
   const [blinkyData, setBlinkyData] = useState(data);
+  const [date, setDate] = useState(new Date());
+  const tick = () => setDate(new Date());
+  useEffect(() => {
+    var timerID = setInterval( () => tick(), 1000 );
+    return function cleanup() {
+        clearInterval(timerID);
+      };
+   });
 
   const handleBlink = useCallback(() => {
     const type = "dev.pulsifer.blinky.request";
@@ -33,7 +41,7 @@ export function Home({data}: Props) {
       headers: message.headers,
     }).then((resp) => {
       if(resp.status == 204) {
-        setBlinkyData(resp.statusText)
+        setBlinkyData('is blinking soon')
       }
     });
   }, []);
@@ -49,18 +57,27 @@ export function Home({data}: Props) {
       url: '/cloudevent',
       data: message.body,
       headers: message.headers,
+    }).then((resp) => {
+      if(resp.status == 204) {
+        setBlinkyData('is rainbowing soon')
+      }
     });
   }, []);
 
   const officeCam = "//video.nest.com/embedded/live/UXUpGmSzPe?autoplay=1";
+  // const unifiCam = "rtsp://192.168.1.1:7447/eng3ayaC9FtBx9oZ"
+  const unifiCam = "video.m3u8"
+  const unifi = true;
+  const cam = unifi ? UnifiCam : NestCam;
+  const url = unifi ? unifiCam : officeCam;
 
   return (
     <Page narrowWidth>
       <Layout>
         <Layout.Section>
           <Card title={`Watch the blinkypi0! ${blinkyData}`}>
-            <Card.Section>
-              {NestCam(officeCam)}
+            <Card.Section title={date.toLocaleTimeString()}>
+              {cam(url)}
             </Card.Section>
             <Card.Section>
               <ButtonGroup segmented>

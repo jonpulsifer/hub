@@ -1,6 +1,6 @@
-const webpack = require('webpack')
+const webpack = require('webpack');
 const WebpackBar = require('webpackbar');
-const path = require('path')
+const path = require('path');
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const nodeExternals = require('webpack-node-externals');
@@ -15,7 +15,7 @@ const common = {
     filename: '[name].js',
     publicPath: '/',
   },
-}
+};
 
 const client = {
   ...common,
@@ -55,4 +55,4 @@ const server = {
   ],
 };
 
-module.exports = [server, client]
+module.exports = [server, client];

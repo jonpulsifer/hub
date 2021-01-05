@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOMServer from 'react-dom/server';
 import { StaticRouter } from 'react-router-dom';
+import { ServerStyleSheet } from 'styled-components';
 
 import express from 'express';
 import morgan from 'morgan';
@@ -38,12 +39,14 @@ server.post("/cloudevent", (req, res) => {
   return res.sendStatus(204)
 });
 server.get('/', (req, res) => {
+  const sheet = new ServerStyleSheet();
   const context: any = {};
-  const app = ReactDOMServer.renderToString(
+  const app = ReactDOMServer.renderToString(sheet.collectStyles(
     <StaticRouter location={req.url} context={context}>
       <App data={req.url.toString()} />
     </StaticRouter>
-  );
+  ));
+  const styles = sheet.getStyleTags();
 
   const indexFile = path.resolve('index.html');
   fs.readFile(indexFile, 'utf8', (err, data) => {
@@ -58,7 +61,9 @@ server.get('/', (req, res) => {
       res.end();
     } else {
       res.write(
-        data.replace('<div id="root"></div>', `<div id="root">${app}</div>`)
+        data
+          .replace('<meta lol />', styles)
+          .replace('<div id="root"></div>', `<div id="root">${app}</div>`)
       );
       res.end();
     }

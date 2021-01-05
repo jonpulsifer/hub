@@ -66,13 +66,13 @@ export function Home({data}: Props) {
 
   const officeCam = "//video.nest.com/embedded/live/UXUpGmSzPe?autoplay=1";
   // const unifiCam = "rtsp://192.168.1.1:7447/eng3ayaC9FtBx9oZ"
-  const unifiCam = "video.m3u8"
+  const unifiCam = "/video/video.m3u8"
   const unifi = true;
   const cam = unifi ? UnifiCam : NestCam;
   const url = unifi ? unifiCam : officeCam;
 
   return (
-    <Page narrowWidth>
+    <Page fullWidth>
       <Layout>
         <Layout.Section>
           <Card title={`Watch the blinkypi0! ${blinkyData}`}>
@@ -94,7 +94,7 @@ export function Home({data}: Props) {
           Polaris
         </Link>
         .{' '}Hosted on{' '}
-        <Link url="https://github.com/homelab-ng/pulsifer.ca">
+        <Link url="https://github.com/jonpulsifer/hub">
           GitHub
         </Link>.
       </FooterHelp>

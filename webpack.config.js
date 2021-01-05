@@ -28,11 +28,12 @@ const client = {
     rules: [
       { test: /\.(j|t)sx?$/, use: 'ts-loader', exclude: /node_modules/ },
       { test: /\.css$/, use: [MiniCssExtractPlugin.loader, "css-loader"], },
+      { test: /\.jpe?g$|\.ico$|\.gif$|\.png$|\.svg$|\.woff$|\.ttf$|\.wav$|\.mp3$/, loader: 'file-loader?name=[name].[ext]' },
     ],
   },
   plugins: [
     new WebpackBar({ name: 'client' }),
-    new HtmlWebpackPlugin({ template: path.resolve(__dirname, "public", "index.html"), }),
+    new HtmlWebpackPlugin({ template: path.resolve(__dirname, "public", "index.html"), favicon: path.resolve(__dirname, "public", "favicon.ico") }),
     new MiniCssExtractPlugin(),
   ],
 };

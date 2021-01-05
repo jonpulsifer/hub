@@ -23,7 +23,6 @@ const root = document.getElementById('root');
 
 hydrate(<WrappedApp />, root);
 
-
 // if (root !== null && root.hasChildNodes() === true) {
 //   // If it's an SSR, we use hydrate to get fast page loads by just
 //   // attaching event listeners after the initial render.

@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useEffect } from 'react';
+import React, { useState, useCallback } from 'react';
 import {
   Button,
   ButtonGroup,
@@ -8,7 +8,7 @@ import {
   Page,
 } from '@shopify/polaris';
 
-import {Link, NestCam, UnifiCam} from './';
+import {Link, UnifiCam} from './';
 import {HTTP, CloudEvent} from 'cloudevents';
 import axios from 'axios';
 
@@ -18,14 +18,6 @@ interface Props {
 
 export function Home({data}: Props) {
   const [blinkyData, setBlinkyData] = useState(data);
-  const [date, setDate] = useState(new Date());
-  const tick = () => setDate(new Date());
-  useEffect(() => {
-    var timerID = setInterval( () => tick(), 1000 );
-    return function cleanup() {
-        clearInterval(timerID);
-      };
-   });
 
   const handleBlink = useCallback(() => {
     const type = "dev.pulsifer.blinky.request";
@@ -64,20 +56,14 @@ export function Home({data}: Props) {
     });
   }, []);
 
-  const officeCam = "//video.nest.com/embedded/live/UXUpGmSzPe?autoplay=1";
-  // const unifiCam = "rtsp://192.168.1.1:7447/eng3ayaC9FtBx9oZ"
-  const unifiCam = "/video/video.m3u8"
-  const unifi = true;
-  const cam = unifi ? UnifiCam : NestCam;
-  const url = unifi ? unifiCam : officeCam;
 
   return (
     <Page fullWidth>
       <Layout>
         <Layout.Section>
           <Card title={`Watch the blinkypi0! ${blinkyData}`}>
-            <Card.Section title={date.toLocaleTimeString()}>
-              {cam(url)}
+            <Card.Section>
+              <UnifiCam />
             </Card.Section>
             <Card.Section>
               <ButtonGroup segmented>

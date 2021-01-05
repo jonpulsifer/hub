@@ -24,7 +24,7 @@
     "build": "yarnpkg run webpack --config=webpack.config.js --mode=production",
     "start": "yarnpkg run webpack serve --host 0.0.0.0 --disable-host-check --hot --config=webpack.config.js",
     "test": "yarnpkg run jest --no-watch",
-    "ffmpeg": "ffmpeg -v info -i rtsp://10.0.0.1:7447/Zw9mBu1iOfY3LbO1 -c:v copy -c:a copy -bufsize 1835k -pix_fmt yuv420p -flags -global_header -hls_time 1 -hls_flags delete_segments dist/video/video.m3u8"
+    "ffmpeg": "ffmpeg -v info -i rtsp://10.0.0.1:7447/Zw9mBu1iOfY3LbO1 -c:v copy -c:a copy -fflags nobuffer -flags low_delay -strict experimental -pix_fmt yuv420p -flags -global_header -hls_time 2 -hls_flags delete_segments dist/video/video.m3u8"
   },
   "browserslist": [
     "extends @shopify/browserslist-config"
@@ -34,7 +34,6 @@
     "@fortawesome/free-brands-svg-icons": "^5.15.1",
     "@fortawesome/react-fontawesome": "^0.1.14",
     "@shopify/polaris": "^5.12.0",
-    "@types/video.js": "^7.3.11",
     "axios": "^0.21.1",
     "cloudevents": "^4.0.0",
     "cors": "^2.8.5",
@@ -58,6 +57,7 @@
     "@types/react-router": "^5.1.9",
     "@types/react-router-dom": "^5.1.7",
     "@types/styled-components": "^5.1.7",
+    "@types/video.js": "^7.3.11",
     "clean-webpack-plugin": "^3.0.0",
     "css-loader": "^5.0.1",
     "file-loader": "^6.2.0",

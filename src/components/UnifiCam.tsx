@@ -1,31 +1,61 @@
-import React, {useEffect, useRef} from 'react';
-import videojs from 'video.js';
+import React, {useRef, useState, useEffect} from 'react';
+import videojs, { VideoJsPlayer } from 'video.js';
 
-export function UnifiCam(url: string) {
-    // const videoJsOptions: videojs.PlayerOptions = {
-    //   autoplay: true,
-    //   controls: true,
-    //   sources: [{
-    //     src: url,
-    //     type: 'application/x-mpegURL',
-    //   }]
-    // };
+const usePlayer = ({ sources, controls, autoplay }: videojs.PlayerOptions) => {
+  const options = {
+    fill: true,
+    fluid: true,
+    preload: 'auto',
+    html5: {
+      hls: {
+        enableLowInitialPlaylist: true,
+        smoothQualityChange: true,
+        overrideNative: true,
+      },
+    },
+  };
+  const videoRef = useRef(null);
+  const [player, setPlayer] = useState<VideoJsPlayer>();
 
-    const playerRef = useRef();
+  useEffect(() => {
+    const vjsPlayer = videojs(videoRef.current, {
+      ...options,
+      controls,
+      autoplay,
+      sources,
+    });
+    setPlayer(vjsPlayer);
 
-    useEffect(() => {
-      const player = videojs(playerRef.current, { autoplay: true, muted: true }, () => {
-        player.src(url);
-      });
-  
-      return () => {
+    return () => {
+      if (player && player !== null) {
         player.dispose();
-      };
-    }, []);
+      }
+    };
+  }, []);
+  useEffect(() => {
+    if (player && player !== null && sources) {
+      player.src(sources);
+    }
+  }, [sources]);
+
+  return videoRef;
+};
+
+export function UnifiCam() {  
+    const videoJsOptions: Partial<videojs.PlayerOptions> = {
+      autoplay: true,
+      controls: true,
+      sources: [{
+        src: "/video/video.m3u8",
+        type: 'application/x-mpegURL',
+      }]
+    };
   
+    const playerRef = usePlayer(videoJsOptions);
+
     return (
       <div data-vjs-player>
-        <video ref={playerRef.current} className="video-js vjs-16-9" playsInline />
+        <video ref={playerRef} className="video-js" />
       </div>
     );
 }

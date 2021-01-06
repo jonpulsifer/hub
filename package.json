@@ -24,7 +24,11 @@
     "build": "yarnpkg run webpack --config=webpack.config.js --mode=production",
     "start": "yarnpkg run webpack serve --host 0.0.0.0 --disable-host-check --hot --config=webpack.config.js",
     "test": "yarnpkg run jest --no-watch",
-    "ffmpeg": "ffmpeg -v info -i rtsp://10.0.0.1:7447/Zw9mBu1iOfY3LbO1 -c:v copy -c:a copy -fflags nobuffer -flags low_delay -strict experimental -pix_fmt yuv420p -flags -global_header -hls_time 2 -hls_flags delete_segments dist/video/video.m3u8"
+    "ffmpeg": "ffmpeg -v info -i rtsp://10.0.0.1:7447/u7wo2fMiCwOAmzUJ -c:v copy -c:a copy -fflags nobuffer -flags low_delay -strict experimental -pix_fmt yuv420p -flags -global_header -hls_time 2 -hls_flags delete_segments dist/video/video.m3u8",
+    "docker:build": "docker build -t jonpulsifer/hub .",
+    "docker:release": "yarnpkg run docker:build && docker push jonpulsifer/hub",
+    "kubectl:restart": "kubectl -n hub rollout restart deploy/hub",
+    "deploy": "yarnpkg docker:release && yarnpkg kubectl:restart"
   },
   "browserslist": [
     "extends @shopify/browserslist-config"

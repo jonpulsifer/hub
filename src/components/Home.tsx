@@ -1,22 +1,23 @@
 import React, { useState, useCallback } from 'react';
 import {
+  Card,
+  Layout,
+  MediaCard,
+  Page,
   Button,
   ButtonGroup,
-  Card,
-  FooterHelp,
-  Layout,
-  Page,
 } from '@shopify/polaris';
 
-import {Link, UnifiCam} from './';
+import {UnifiCam} from './';
 import {HTTP, CloudEvent} from 'cloudevents';
 import axios from 'axios';
 
 interface Props {
-  data?: string,
+  data: string,
 }
 
 export function Home({data}: Props) {
+  const learnMoreUrl = "https://github.com/jonpulsifer/cloudlab/tree/main/rpi/blinkypi0";
   const [blinkyData, setBlinkyData] = useState(data);
 
   const handleBlink = useCallback(() => {
@@ -33,10 +34,11 @@ export function Home({data}: Props) {
       headers: message.headers,
     }).then((resp) => {
       if(resp.status == 204) {
-        setBlinkyData('is blinking soon')
+        setBlinkyData(`blinking requested at ${new Date().toLocaleString()}`)
       }
     });
   }, []);
+
   const handleRainbow = useCallback(() => {
     const type = "dev.pulsifer.blinky.request";
     const source = "https://github.com/jonpulsifer/cloudlab/rpi/blinkypi0";
@@ -51,39 +53,38 @@ export function Home({data}: Props) {
       headers: message.headers,
     }).then((resp) => {
       if(resp.status == 204) {
-        setBlinkyData('is rainbowing soon')
+        setBlinkyData(`rainbowing requested at: ${new Date().toLocaleString()}`)
       }
     });
   }, []);
 
 
   return (
-    <Page fullWidth>
+    <Page>
       <Layout>
-        <Layout.Section>
-          <Card title={`Watch the blinkypi0! ${blinkyData}`}>
-            <Card.Section>
-              <UnifiCam />
-            </Card.Section>
-            <Card.Section>
-              <ButtonGroup segmented>
-                <Button onClick={handleBlink}>Blink</Button>
-                <Button onClick={handleRainbow}>Rainbow</Button>
+        <Layout.Section oneThird>
+          <MediaCard
+            title={`blinkypi0: ${blinkyData}`}
+            description='This is a stream from a webcam pointed at the blinkypi0. Interact with it using the control panel on the right.'
+            primaryAction={{
+              content: 'Learn more about blinkypi0',
+              onAction: () => { window.location.href = learnMoreUrl; },
+            }}
+          >
+            <UnifiCam />
+          </MediaCard>
+        </Layout.Section>
+        <Layout.Section oneThird>
+          <Card title="blinkypi0 controls">
+            <Card.Section title="Actions">
+              <ButtonGroup>
+                <Button primary size='large' onClick={handleRainbow}>Rainbow</Button>
+                <Button size='large' onClick={handleBlink}>Blink</Button>
               </ButtonGroup>
             </Card.Section>
           </Card>
         </Layout.Section>
       </Layout>
-      <FooterHelp>
-        Built with{' '}
-        <Link url="https://polaris.shopify.com/">
-          Polaris
-        </Link>
-        .{' '}Hosted on{' '}
-        <Link url="https://github.com/jonpulsifer/hub">
-          GitHub
-        </Link>.
-      </FooterHelp>
     </Page>
   );
 }

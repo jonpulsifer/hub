@@ -1,22 +1,17 @@
 import React from 'react';
-import {
-  ThemeProvider,
-} from '@shopify/polaris';
 import {Home} from './components';
-import { ThemeConfig } from '@shopify/polaris/dist/types/latest/src/utilities/theme';
+import {
+  Frame,
+} from '@shopify/polaris';
 
 interface Props {
-  data?: string,
+  data: string,
 }
 
 export function App({data}: Props) {
-  const theme: ThemeConfig = {
-    colorScheme: 'dark',
-  };
-
   return (
-    <ThemeProvider theme={theme}>
+    <Frame>
       <Home data={data} />
-    </ThemeProvider>
+    </Frame>
   );
 }

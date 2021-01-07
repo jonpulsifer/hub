@@ -49,6 +49,7 @@ const server = {
   module: {
     rules: [
       { test: /\.(j|t)sx?$/, use: 'ts-loader', exclude: /node_modules/ },
+      { test: /\.jpe?g$|\.ico$|\.gif$|\.png$|\.svg$|\.woff$|\.ttf$|\.wav$|\.mp3$/, loader: 'file-loader?name=[name].[ext]' },
     ],
   },
   plugins: [

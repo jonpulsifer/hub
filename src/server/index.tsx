@@ -38,12 +38,12 @@ server.post("/cloudevent", (req, res) => {
   });
   return res.sendStatus(204)
 });
-server.get('/', (req, res) => {
+server.get('*', (req, res) => {
   const sheet = new ServerStyleSheet();
   const context: any = {};
   const app = ReactDOMServer.renderToString(sheet.collectStyles(
     <StaticRouter location={req.url} context={context}>
-      <App data={req.url.toString()} />
+      <App />
     </StaticRouter>
   ));
   const styles = sheet.getStyleTags();

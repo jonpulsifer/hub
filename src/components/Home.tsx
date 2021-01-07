@@ -64,6 +64,7 @@ export function Home({data}: Props) {
       <Layout>
         <Layout.Section oneThird>
           <MediaCard
+            portrait
             title={`blinkypi0: ${blinkyData}`}
             description='This is a stream from a webcam pointed at the blinkypi0. Interact with it using the control panel on the right.'
             primaryAction={{

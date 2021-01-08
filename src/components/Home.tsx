@@ -13,7 +13,7 @@ export function Home() {
   return (
     <Page>
       <Layout>
-        <Layout.Section oneThird>
+        <Layout.Section oneHalf>
           <MediaCard
             portrait
             title={`Pro Gamer LEDs`}

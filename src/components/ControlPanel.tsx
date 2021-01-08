@@ -62,25 +62,21 @@ export function ControlPanel() {
 
   const handleBlink = async () => {
     const data = await requestAction("blinkypi0", "blink");
-    console.log(`DATA: ${data}`)
     setBlinkyData(data);
   };
 
   const handleRainbow = useCallback(async () => {
     const data = await requestAction("blinkypi0", "rainbow");
-    console.log(`DATA: ${data}`)
     setBlinkyData(data)
   }, []);
 
   const handleRadioBlink = useCallback(async () => {
     const data = await requestAction("radiopi0", "blink");
-    console.log(`DATA: ${data}`)
     setRadioData(data);
   }, []);
   
   const handleRadioRainbow = useCallback(async () => {
     const data = await  requestAction("radiopi0", "rainbow");
-    console.log(`DATA: ${data}`)
     setRadioData(data);
   }, []);
 

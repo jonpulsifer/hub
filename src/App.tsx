@@ -49,6 +49,38 @@ export function App() {
       onToggle={toggleMenuOpen}
     />
   );
+
+  const navMarkup = (
+    <Navigation location={location.pathname}>
+      <Navigation.Section
+        title="Home Hub 9000"
+        items={[
+          {
+            url: '/',
+            label: 'Home',
+            exactMatch: true,
+            icon: HomeMajor,
+          },
+          {
+            url: '/cam',
+            label: 'Cameras',
+            exactMatch: true,
+            icon: CameraMajor,
+          },
+        ]}
+      />
+    </Navigation>
+  );
+
+  const topBarMarkup = (
+    <TopBar
+      showNavigationToggle
+      onNavigationToggle={toggleNavigation}
+      userMenu={menuMarkup}
+    />
+  );
+
+  const framed = false;
   return (
     <AppProvider
       i18n={enTranslations}
@@ -59,34 +91,8 @@ export function App() {
       <Frame
         showMobileNavigation={isMobile}
         onNavigationDismiss={toggleNavigation}
-        navigation={
-          <Navigation location={location.pathname}>
-            <Navigation.Section
-              title="Home Hub 9000"
-              items={[
-                {
-                  url: '/',
-                  label: 'Home',
-                  exactMatch: true,
-                  icon: HomeMajor,
-                },
-                {
-                  url: '/cam',
-                  label: 'Cameras',
-                  exactMatch: true,
-                  icon: CameraMajor,
-                },
-              ]}
-            />
-          </Navigation>
-        }
-        topBar={
-          <TopBar
-            showNavigationToggle
-            onNavigationToggle={toggleNavigation}
-            userMenu={menuMarkup}
-          />
-        }
+        navigation={ framed ? navMarkup : undefined }
+        topBar={framed ? topBarMarkup : undefined }
       >
         <Routes />
       </Frame>

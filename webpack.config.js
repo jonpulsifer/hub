@@ -4,6 +4,9 @@ const path = require('path');
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const nodeExternals = require('webpack-node-externals');
+const CopyPlugin = require("copy-webpack-plugin");
+
+const ASSET_PATH = process.env.ASSET_PATH || '/';
 
 const common = {
   mode: 'development',
@@ -13,7 +16,8 @@ const common = {
   },
   output: {
     filename: '[name].js',
-    publicPath: '/',
+    path: path.resolve(__dirname, 'dist'),
+    publicPath: ASSET_PATH,
   },
 };
 
@@ -28,13 +32,16 @@ const client = {
     rules: [
       { test: /\.(j|t)sx?$/, use: 'ts-loader', exclude: /node_modules/ },
       { test: /\.css$/, use: [MiniCssExtractPlugin.loader, "css-loader"], },
-      { test: /\.jpe?g$|\.ico$|\.gif$|\.png$|\.svg$|\.woff$|\.ttf$|\.wav$|\.mp3$/, loader: 'file-loader?name=[name].[ext]' },
+      { test: /\.jpe?g$|\.ico$|\.gif$|\.png$|\.svg$/, loader: 'file-loader', options: { name: 'assets/images/[name].[ext]' } },
     ],
   },
   plugins: [
     new WebpackBar({ name: 'client' }),
     new HtmlWebpackPlugin({ template: path.resolve(__dirname, "public", "index.html"), favicon: path.resolve(__dirname, "public", "favicon.ico") }),
-    new MiniCssExtractPlugin(),
+    new MiniCssExtractPlugin({
+      filename: 'assets/style/[name].css',
+      chunkFilename: 'assets/style/[id].css'
+    }),
   ],
 };
 
@@ -49,11 +56,18 @@ const server = {
   module: {
     rules: [
       { test: /\.(j|t)sx?$/, use: 'ts-loader', exclude: /node_modules/ },
-      { test: /\.jpe?g$|\.ico$|\.gif$|\.png$|\.svg$|\.woff$|\.ttf$|\.wav$|\.mp3$/, loader: 'file-loader?name=[name].[ext]' },
+      { test: /\.jpe?g$|\.ico$|\.gif$|\.png$|\.svg$/, loader: 'file-loader', options: { name: 'assets/images/[name].[ext]' } },
     ],
   },
   plugins: [
     new WebpackBar({ name: 'server' }),
+    new CopyPlugin({
+      patterns: [
+        { from: "*.webmanifest", context: path.resolve(__dirname, "public") },
+        { from: "*.txt", context: path.resolve(__dirname, "public") },
+        { from: "*.png", to: 'assets/images', context: path.resolve(__dirname, "public") },
+      ],
+    }),
   ],
 };
 

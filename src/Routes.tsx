@@ -14,7 +14,7 @@ export function Routes() {
         exact
         key="home-index"
         path={Path.Home}
-        render={() => <Home data="router!" />}
+        render={() => <Home />}
       />
       <Route
         exact

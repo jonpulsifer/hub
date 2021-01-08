@@ -17,6 +17,7 @@ const HOSTNAME = process.env.HOSTNAME || '0.0.0.0';
 const PORT = process.env.PORT || 8080;
 
 const blinkyUrl = "http://blinkypi0:3000";
+const radioUrl = "http://radiopi0:3000";
 const server = express();
 
 server.use(morgan('combined'));
@@ -27,9 +28,20 @@ server.use(express.static('dist'));
 server.post("/cloudevent", (req, res) => {
   const ce = HTTP.toEvent({ headers: req.headers, body: req.body });
   const message = HTTP.binary(ce); // Or HTTP.structured(ce)
+  let url: string
+  switch (ce.type) {
+    case "dev.pulsifer.blinky.request":
+      url = blinkyUrl;
+      break;
+    case "dev.pulsifer.radio.request":
+      url = radioUrl;
+      break;
+    default:
+      return res.sendStatus(501)
+  }
   axios({
     method: "post",
-    url: blinkyUrl,
+    url: url,
     data: message.body,
     headers: message.headers,
   }).catch(error => {

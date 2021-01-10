@@ -26,7 +26,8 @@
     "docker:build": "docker build -t jonpulsifer/hub .",
     "docker:release": "yarnpkg run docker:build && docker push jonpulsifer/hub",
     "kubectl:restart": "kubectl -n hub rollout restart deploy/hub",
-    "deploy": "yarnpkg docker:release && yarnpkg kubectl:restart"
+    "reload-kiosk": "ssh jawn@homepi4 -- ./simulate-reload",
+    "deploy": "yarnpkg docker:release && yarnpkg kubectl:restart && yarnpkg reload-kiosk"
   },
   "browserslist": [
     "extends @shopify/browserslist-config"

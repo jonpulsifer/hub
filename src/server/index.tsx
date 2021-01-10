@@ -44,12 +44,14 @@ server.post("/cloudevent", (req, res) => {
     url: url,
     data: message.body,
     headers: message.headers,
+  }).then((response) => {
+    return res.send(response.data).status(response.status)
   }).catch(error => {
     console.log(error.response)
     return res.sendStatus(error.response.status)
   });
-  return res.sendStatus(204)
 });
+
 server.get('*', (req, res) => {
   const sheet = new ServerStyleSheet();
   const context: any = {};

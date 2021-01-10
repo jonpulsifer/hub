@@ -20,7 +20,7 @@
     ]
   },
   "scripts": {
-    "dev": "yarnpkg run webpack --mode=production && node ./dist/server.js",
+    "dev": "yarnpkg run webpack --mode=development && node ./dist/server.js",
     "build": "yarnpkg run webpack --config=webpack.config.js --mode=production",
     "start": "yarnpkg run webpack serve --host 0.0.0.0 --disable-host-check --hot --config=webpack.config.js",
     "test": "yarnpkg run jest --no-watch",

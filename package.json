@@ -59,7 +59,7 @@
     "@types/jest": "^26.0.19",
     "@types/morgan": "^1.9.2",
     "@types/react": "^17.0.0",
-    "@types/react-router": "^5.1.9",
+    "@types/react-router": "^5.1.10",
     "@types/react-router-dom": "^5.1.7",
     "@types/styled-components": "^5.1.7",
     "@types/video.js": "^7.3.11",

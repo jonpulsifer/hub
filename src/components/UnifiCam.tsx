@@ -41,12 +41,16 @@ const usePlayer = ({ sources, controls, autoplay }: videojs.PlayerOptions) => {
   return videoRef;
 };
 
-export function UnifiCam() {  
+interface Props {
+  device: string;
+}
+
+export function UnifiCam({device}: Props) {
     const videoJsOptions: Partial<videojs.PlayerOptions> = {
       autoplay: true,
       controls: true,
       sources: [{
-        src: "/video/video.m3u8",
+        src: `/video/${device}/video.m3u8`,
         type: 'application/x-mpegURL',
       }]
     };

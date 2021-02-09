@@ -1,8 +1,8 @@
 import React, { useState, useCallback, useEffect } from 'react';
 import {
-  Card,
   Button,
   ButtonGroup,
+  Heading,
   RangeSlider,
 } from '@shopify/polaris';
 import {
@@ -100,44 +100,42 @@ export function PiControls({device}: Props) {
   
   const lightControlMarkup = lights ? (
     <>
-      <Card.Subsection>
-        <ButtonGroup fullWidth segmented>
-          <Button onClick={() => handleAction("rainbow")} icon={HintMajor} >Rainbow</Button>
-          <Button onClick={() => handleAction("blink")} icon={HintMajor} >Blink</Button>
-        </ButtonGroup>
-        <br />
-        <RangeSlider
-          output
-          label="Brightness"
-          min={0.1}
-          max={1}
-          step={0.1}
-          value={brightness}
-          onChange={handleBrightnessChange}
-        />
-        <br />
-        <ButtonGroup fullWidth segmented>
-          <Button onClick={() => handleAction("brighten")} icon={HintMajor}>Brighten</Button>
-          <Button onClick={() => handleAction("darken")} icon={HintMajor}>Darken</Button>
-        </ButtonGroup>
-      </Card.Subsection>
+      <ButtonGroup segmented>
+        <Button onClick={() => handleAction("rainbow")} icon={HintMajor} >Rainbow</Button>
+        <Button onClick={() => handleAction("blink")} icon={HintMajor} >Blink</Button>
+      </ButtonGroup>
+      <br />
+      <RangeSlider
+        output
+        label="Brightness"
+        min={0.1}
+        max={1}
+        step={0.1}
+        value={brightness}
+        onChange={handleBrightnessChange}
+      />
+      <br />
+      <ButtonGroup segmented>
+        <Button onClick={() => handleAction("darken")} icon={HintMajor}>Darken</Button>
+        <Button onClick={() => handleAction("brighten")} icon={HintMajor}>Brighten</Button>
+      </ButtonGroup>
     </>
   ) : null;
 
   const audioControlMarkup = audio ? (
-    <Card.Subsection>
-      <ButtonGroup>
-        <Button onClick={() => handleAction("wow")} icon={SoundMajor}>Wow</Button>
-      </ButtonGroup>
-    </Card.Subsection>
+    <ButtonGroup>
+      <Button onClick={() => handleAction("wow")} icon={SoundMajor}>Wow</Button>
+    </ButtonGroup>
   ) : null;
-
   
   return (
-    <Card.Section title={deviceTitleMarkup}>
+    <>
+      <Heading>{deviceTitleMarkup}</Heading>
       <p>{status}</p>
-      {lightControlMarkup}
+      <br />
       {audioControlMarkup}
-    </Card.Section>
+      <br />
+      {lightControlMarkup}
+    </>
   );
 }

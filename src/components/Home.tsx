@@ -1,33 +1,56 @@
-import React from 'react';
+import React, {useState, useCallback} from 'react';
 import {
+  Card,
   Layout,
-  MediaCard,
   Page,
+  Tabs,
 } from '@shopify/polaris';
 
 import {ControlPanel, UnifiCam} from './';
 
 export function Home() {
-  const learnMoreUrl = "https://github.com/jonpulsifer/cloudlab/tree/main/rpi/blinkypi0";
+  const [selected, setSelected] = useState(0);
+  const handleTabChange = useCallback(
+    (selectedTabIndex) => setSelected(selectedTabIndex),
+    [],
+  );
 
+  const playgroundMarkup = (
+    <>
+      <UnifiCam device="blinkypi0" />
+      <ControlPanel />
+    </>
+  );
+
+  const tabs = [
+    {
+      id: 'Some default panel',
+      content: 'All',
+      accessibilityLabel: 'All customers',
+      panelID: 'all-customers-content-1',
+    },
+    {
+      id: 'camera-playground',
+      content: 'Camera Playground',
+      children: playgroundMarkup,
+    },
+    {
+      id: 'outdoors',
+      content: 'Outdoor Camera',
+      children: <UnifiCam device="outside"/>,
+    },
+  ];
   return (
     <Page>
       <Layout>
-        <Layout.Section oneThird>
-          <MediaCard
-            portrait
-            title={`Pro Gamer LEDs`}
-            description='This is a stream from a UniFi camera pointed at two Raspberry Pis. Interact with them using the control panel.'
-            primaryAction={{
-              content: 'Learn more about blinkypi0',
-              onAction: () => { window.location.href = learnMoreUrl; },
-            }}
-          >
-            <UnifiCam />
-          </MediaCard>
-        </Layout.Section>
-        <Layout.Section oneThird>
-          <ControlPanel />
+        <Layout.Section fullWidth>
+          <Card>
+            <Tabs fitted tabs={tabs} selected={selected} onSelect={handleTabChange}>
+              <Card.Section>
+                {tabs[selected].children}
+              </Card.Section>
+            </Tabs>
+          </Card>
         </Layout.Section>
       </Layout>
     </Page>

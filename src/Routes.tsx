@@ -20,7 +20,7 @@ export function Routes() {
         exact
         key="cam-index"
         path={Path.Cam}
-        render={() => <UnifiCam />}
+        render={() => <UnifiCam device="outside" />}
       />
     </Switch>
   );

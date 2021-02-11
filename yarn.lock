@@ -458,10 +458,10 @@
   dependencies:
     source-map "^0.6.1"
 
-"@types/video.js@^7.3.11":
-  version "7.3.11"
-  resolved "https://registry.yarnpkg.com/@types/video.js/-/video.js-7.3.11.tgz#b1749fcc733c608ede4d10c9a570ebafc4ec2486"
-  integrity sha512-9KpJkt6zsy6xRiHZjzjKxCEySqt3TgPgl0XegszwJfaLO4+n4rELS5rbsHUgLJxZaMgbJtyTPXk1HkCsJ5kRiA==
+"@types/video.js@^7.3.13":
+  version "7.3.13"
+  resolved "https://registry.yarnpkg.com/@types/video.js/-/video.js-7.3.13.tgz#49727c3f8877e7a6e28cb77f02624648be8d2cef"
+  integrity sha512-CI7qm2BhTenuBifqt1pEweG9peBXRupgVEqAyZ7gXJGAYeA70MZmH/hcIFzqGfAeuO/S353AlXfQ0Azb4jXQUQ==
 
 "@types/webpack-sources@*":
   version "2.1.0"

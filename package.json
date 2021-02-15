@@ -70,7 +70,7 @@
     "process": "^0.11.10",
     "style-loader": "^2.0.0",
     "styled-components": "^5.2.1",
-    "ts-loader": "^8.0.14",
+    "ts-loader": "^8.0.17",
     "webpack": "^5.21.2",
     "webpack-cli": "^4.3.1",
     "webpack-dev-server": "^3.11.2",

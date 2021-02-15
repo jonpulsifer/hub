@@ -1,18 +1,27 @@
-import React, {useState, useCallback} from 'react';
+import React, { useState, useCallback } from 'react';
 import {
+  Banner,
   Card,
   Layout,
   Page,
   Tabs,
 } from '@shopify/polaris';
 
-import {ControlPanel, UnifiCam} from './';
+import { ControlPanel, UnifiCam } from './';
 
 export function Home() {
   const [selected, setSelected] = useState(0);
   const handleTabChange = useCallback(
     (selectedTabIndex) => setSelected(selectedTabIndex),
     [],
+  );
+
+  const allMarkup = (
+    <Banner>
+      <p>
+        There's nothing here. Don't worry about it.
+      </p>
+    </Banner>
   );
 
   const playgroundMarkup = (
@@ -24,10 +33,9 @@ export function Home() {
 
   const tabs = [
     {
-      id: 'Some default panel',
+      id: 'default',
       content: 'All',
-      accessibilityLabel: 'All customers',
-      panelID: 'all-customers-content-1',
+      children: allMarkup,
     },
     {
       id: 'camera-playground',
@@ -37,7 +45,7 @@ export function Home() {
     {
       id: 'outdoors',
       content: 'Outdoor Camera',
-      children: <UnifiCam device="outside"/>,
+      children: <UnifiCam device="outside" />,
     },
   ];
   return (

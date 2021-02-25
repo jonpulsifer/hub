@@ -226,10 +226,10 @@
     lodash "^4.17.4"
     react-transition-group "^4.4.1"
 
-"@shopify/typescript-configs@^3.0.2":
-  version "3.0.2"
-  resolved "https://registry.yarnpkg.com/@shopify/typescript-configs/-/typescript-configs-3.0.2.tgz#806fb4bb2b4adc92253102b4ed2093630e41da67"
-  integrity sha512-pI/ckfxJ/5gdCatsNANTgFT/TTd3Tf1NydG07xL/HBcQVtO8YT5ryKSdIITSE01GD7NbTuyfP8WYo0TYnA5QPA==
+"@shopify/typescript-configs@^4.0.0":
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/@shopify/typescript-configs/-/typescript-configs-4.0.0.tgz#56624b897014a49212924ba867c23d50093f3f4c"
+  integrity sha512-pHCdcOjKlHnuLC5xJtL83fWCknVZ/Im7lVBtBaAl1MRmtVpi5OpZL1FDEAWDFc0RGPpHBnurrxtbcusHUtrbVQ==
 
 "@types/anymatch@*":
   version "1.3.1"

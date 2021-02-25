@@ -52,7 +52,7 @@
   },
   "devDependencies": {
     "@shopify/browserslist-config": "^2.2.4",
-    "@shopify/typescript-configs": "^3.0.2",
+    "@shopify/typescript-configs": "^4.0.0",
     "@types/cors": "^2.8.10",
     "@types/express": "^4.17.11",
     "@types/morgan": "^1.9.2",

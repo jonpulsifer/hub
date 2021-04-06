@@ -205,24 +205,25 @@
   resolved "https://registry.yarnpkg.com/@shopify/polaris-icons/-/polaris-icons-4.4.0.tgz#e66153159b3269df813c22dfe52f8a2b9ae32c11"
   integrity sha512-MoqlzZPcVPKzGjlTSOfnxpdbXPxX6USUUnz9AqdgucacnNntNkij9S3Q92YUiWZiAXnLh57poXz9TB6XIjwv7w==
 
-"@shopify/polaris-tokens@^2.16.0":
-  version "2.18.0"
-  resolved "https://registry.yarnpkg.com/@shopify/polaris-tokens/-/polaris-tokens-2.18.0.tgz#6c1a3287d0a2413d7c5fbda36b588fba6b44394e"
-  integrity sha512-8cFHj4Hb8zOtxbaNqJpA1gUlsIOjxT0hl/V68bTFoaNMF9yAsZRwEzmzZbYqSqy4yjZPZpVEpoVikXuuHs8bVA==
+"@shopify/polaris-tokens@^3.0.0":
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/@shopify/polaris-tokens/-/polaris-tokens-3.0.0.tgz#7e6a6d3ac3fa2ba75a19f9bd5db260f904758844"
+  integrity sha512-6ClNAkklttSqtGtBTSoSX+RG3M2fLX8nh6YMKvG6eLRMfkPAFq19krh8jgJ3+8uUqgdmA3VvNFYnNxbdyqbrQQ==
   dependencies:
     hsluv "^0.1.0"
     tslib "^1.14.1"
 
-"@shopify/polaris@^6.0.1":
-  version "6.0.1"
-  resolved "https://registry.yarnpkg.com/@shopify/polaris/-/polaris-6.0.1.tgz#c809b23396bd7cc539f788b84c3e7a7702afa882"
-  integrity sha512-3uDmySj7IBYc7TXrsq9NZqiMGEBqTh5Mgt7aI0gcDJag8JK7+7rek+k+05DWoERQN7vXUdS8EAo0dFnz0YhYLw==
+"@shopify/polaris@^6.2.1":
+  version "6.2.1"
+  resolved "https://registry.yarnpkg.com/@shopify/polaris/-/polaris-6.2.1.tgz#9920efb49d5efd4d6a37f60ba464a6fff65a1c99"
+  integrity sha512-0ampeq31DWuS54Tngb+TwZ3Fplj/ukboHz94ouP+HAkMMczaTQ/SPB3PapDYhBl+WlL+eobLzF1wUSxj8KnePA==
   dependencies:
     "@shopify/polaris-icons" "^4.1.0"
-    "@shopify/polaris-tokens" "^2.16.0"
+    "@shopify/polaris-tokens" "^3.0.0"
     "@types/react" "^16.9.12"
     "@types/react-dom" "^16.9.4"
     "@types/react-transition-group" "^4.4.0"
+    focus-visible "^5.2.0"
     lodash "^4.17.4"
     react-transition-group "^4.4.1"
 
@@ -1957,6 +1958,11 @@ find-up@^4.0.0:
   dependencies:
     locate-path "^5.0.0"
     path-exists "^4.0.0"
+
+focus-visible@^5.2.0:
+  version "5.2.0"
+  resolved "https://registry.yarnpkg.com/focus-visible/-/focus-visible-5.2.0.tgz#3a9e41fccf587bd25dcc2ef045508284f0a4d6b3"
+  integrity sha512-Rwix9pBtC1Nuy5wysTmKy+UjbDJpIfg8eHjw0rjZ1mX4GNLz1Bmd16uDpI3Gk1i70Fgcs8Csg2lPm8HULFg9DQ==
 
 follow-redirects@^1.0.0, follow-redirects@^1.10.0:
   version "1.13.1"

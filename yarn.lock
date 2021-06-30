@@ -200,10 +200,10 @@
   resolved "https://registry.yarnpkg.com/@shopify/browserslist-config/-/browserslist-config-2.2.4.tgz#fcb0d1b7e3fab70a6d3cead21c6ceeb7b10fe53f"
   integrity sha512-jtg92Qj4s6Nh4/Y7+ITkyoh6mcS4rmQFo55OY6B52KO5hs7ORw40Ayj5pbThmcNyvfxFmU4yi2wV2fuwuanoOA==
 
-"@shopify/polaris-icons@^4.1.0", "@shopify/polaris-icons@^4.4.0":
-  version "4.4.0"
-  resolved "https://registry.yarnpkg.com/@shopify/polaris-icons/-/polaris-icons-4.4.0.tgz#e66153159b3269df813c22dfe52f8a2b9ae32c11"
-  integrity sha512-MoqlzZPcVPKzGjlTSOfnxpdbXPxX6USUUnz9AqdgucacnNntNkij9S3Q92YUiWZiAXnLh57poXz9TB6XIjwv7w==
+"@shopify/polaris-icons@^4.1.0", "@shopify/polaris-icons@^4.6.2":
+  version "4.6.2"
+  resolved "https://registry.yarnpkg.com/@shopify/polaris-icons/-/polaris-icons-4.6.2.tgz#24f674338be4de22c38a05bc004c5e56348cd5d0"
+  integrity sha512-HvAB/mztV/6SUJhb76c1CydAtx0tSCiJakzu5+XbDY4Tl+BlFbyAJyoEnGqFcUioLbW0hXN/qk6F++eJcje7aw==
 
 "@shopify/polaris-tokens@^2.16.0":
   version "2.18.0"

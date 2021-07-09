@@ -37,7 +37,7 @@
     "@fortawesome/fontawesome-svg-core": "^1.2.32",
     "@fortawesome/free-brands-svg-icons": "^5.15.2",
     "@fortawesome/react-fontawesome": "^0.1.14",
-    "@shopify/polaris": "^6.0.1",
+    "@shopify/polaris": "^6.6.0",
     "@shopify/polaris-icons": "^4.4.0",
     "axios": "^0.21.1",
     "cloudevents": "^4.0.0",

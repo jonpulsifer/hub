@@ -60,7 +60,7 @@
     "@types/react-router": "^5.1.11",
     "@types/react-router-dom": "^5.1.7",
     "@types/styled-components": "^5.1.7",
-    "@types/video.js": "^7.3.14",
+    "@types/video.js": "^7.3.31",
     "clean-webpack-plugin": "^3.0.0",
     "copy-webpack-plugin": "^7.0.0",
     "css-loader": "^5.0.1",
